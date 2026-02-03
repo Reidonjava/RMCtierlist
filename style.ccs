@@ -1,1 +1,106 @@
+/* ------------------------------
+   GENERAL BODY STYLING
+--------------------------------*/
+body {
+  background-color: #0f0f14;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Headings */
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin-top: 20px;
+}
+
+/* ------------------------------
+   LEADERBOARD TABLE
+--------------------------------*/
+table {
+  width: 80%;
+  margin: 0 auto 40px auto;
+  border-collapse: collapse;
+  background-color: #1a1a1a;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px 15px;
+  border: 1px solid #333;
+  text-align: center;
+}
+
+th {
+  background-color: #222;
+  font-weight: bold;
+}
+
+td a {
+  color: #4fa3ff;
+  text-decoration: none;
+}
+
+td a:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------------
+   PLAYER PROFILE PAGE
+--------------------------------*/
+#profile {
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: left;
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+#profile ul {
+  list-style: none;
+  padding: 0;
+}
+
+#profile li {
+  padding: 5px 0;
+}
+
+/* ------------------------------
+   TIER COLORS
+--------------------------------*/
+.tier-S { color: gold; font-weight: bold; }
+.tier-A { color: #4caf50; font-weight: bold; }
+.tier-B { color: #4fa3ff; font-weight: bold; }
+.tier-C { color: #aaaaaa; font-weight: bold; }
+.tier-D { color: #ff9900; font-weight: bold; }
+.tier-F { color: red; font-weight: bold; }
+.tier-NT { color: #555; font-style: italic; }
+
+/* ------------------------------
+   LINKS
+--------------------------------*/
+a {
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #00ffff;
+}
+
+/* ------------------------------
+   RESPONSIVE
+--------------------------------*/
+@media (max-width: 600px) {
+  table, #profile {
+    width: 95%;
+  }
+}
 
