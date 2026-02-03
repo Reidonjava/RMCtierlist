@@ -2,7 +2,6 @@
   {
     "ign": "Reidonjavaa",
     "region": "EU",
-    "Ranks" : SR tier tester, Owner
     "tiers": {
       "Axe": "NT",
       "Sword": "NT",
@@ -11,14 +10,45 @@
     }
   },
   {
-    "ign": "PlayerTwo",
+    "ign": "AlexMiner",
     "region": "EU",
     "tiers": {
-      "Axe": "A",
-      "Sword": "A",
-      "Mace": "A+",
+      "Axe": "B",
+      "Sword": "C",
+      "Mace": "A",
       "SMP": "NT"
+    }
+  },
+  {
+    "ign": "EnderQueen",
+    "region": "NA",
+    "tiers": {
+      "Axe": "NT",
+      "Sword": "S",
+      "Mace": "S",
+      "SMP": "A"
+    }
+  },
+  {
+    "ign": "BlockMaster",
+    "region": "EU",
+    "tiers": {
+      "Axe": "D",
+      "Sword": "C",
+      "Mace": "B",
+      "SMP": "F"
+    }
+  },
+  {
+    "ign": "DiamondHero",
+    "region": "NA",
+    "tiers": {
+      "Axe": "A",
+      "Sword": "S",
+      "Mace": "A",
+      "SMP": "S"
     }
   }
 ]
+
 
