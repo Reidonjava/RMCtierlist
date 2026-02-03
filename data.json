@@ -1,1 +1,24 @@
+[
+  {
+    "ign": "Reidonjavaa",
+    "region": "EU",
+    "Ranks" : SR tier tester, Owner
+    "tiers": {
+      "Axe": "NT",
+      "Sword": "NT",
+      "Mace": "NT",
+      "SMP": "NT"
+    }
+  },
+  {
+    "ign": "PlayerTwo",
+    "region": "EU",
+    "tiers": {
+      "Axe": "A",
+      "Sword": "A",
+      "Mace": "A+",
+      "SMP": "NT"
+    }
+  }
+]
 
