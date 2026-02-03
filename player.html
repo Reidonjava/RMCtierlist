@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Player Profile</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Optional: simple styling for the profile page */
+    body {
+      background: #0f0f14;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      padding: 5px 0;
+    }
+    .tier-S { color: gold; }
+    .tier-A { color: #4caf50; }
+    .tier-B { color: #4fa3ff; }
+    .tier-C { color: #aaa; }
+    .tier-D { color: #ff9900; }
+    .tier-F { color: red; }
+    .tier-NT { color: #555; }
+  </style>
+</head>
+<body>
+
+  <div id="profile">
+    Loading player profile...
+  </div>
+
+  <script>
+    // 🔢 POINT SYSTEM
+    const tierPoints = {
+      "S": 100,
+      "A": 90,
+      "B": 80,
+      "C": 70,
+      "D": 60,
+      "F": 30,
+      "NT": 0
+    };
+
+    fetch("data.json")
+      .then(res => res.json())
+      .then(players => {
+
+        // Get IGN from URL, e.g., player.html?ign=Steve
+        const params = new URLSearchParams(window.location.search);
+        const ign = params.get("ign");
+
+        // Find player in data.json
+        const player = players.find(p => p.ign === ign);
+
+        if (!player) {
+          document.getElementById("profile").innerText = "Player not found";
+          return;
+        }
+
+        // Calculate total points and generate tier list
+        let totalPoints = 0;
+        let tierList = "";
+
+        for (const mode in player.tiers) {
+          const tier = player.tiers[mode];
+          totalPoints += tierPoints[tier];
+          tierList += `<li>${mode}: <span class="tier-${tier.replace("+","plus")}">${tier} tier</span></li>`;
+        }
+
+        // Calculate current ranking
+        players.forEach(p => {
+          p.points = Object.values(p.tiers)
+            .reduce((sum, t) => sum + tierPoints[t], 0);
+        });
+        players.sort((a,b) => b.points - a.points);
+        const rank = players.findIndex(p => p.ign === ign) + 1;
+
+        // Display profile
+        document.getElementById("profile").innerHTML = `
+          <h1>${player.ign}</h1>
+          <p><b>Region:</b> ${player.region}</p>
+
+          <h3>Tiers</h3>
+          <ul>${tierList}</ul>
+
+          <p><b>Total points:</b> ${totalPoints}</p>
+          <p><b>Current ranking:</b> #${rank}</p>
+        `;
+      });
+  </script>
+
+</body>
+</html>
