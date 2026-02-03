@@ -1,39 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leaderboard</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Basic leaderboard styling */
+    body {
+      background: #0f0f14;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 80%;
+      margin: 0 auto;
+      border-collapse: collapse;
+      background: #1a1a1a;
+    }
+    th, td {
+      padding: 10px 15px;
+      border: 1px solid #333;
+    }
+    th {
+      background: #222;
+    }
+    a {
+      color: #4fa3ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
 
-<script>
-const tierPoints = {
-  "S": 100,
-  "A": 90,
-  "B": 80,
-  "C": 70,
-  "D": 60,
-  "F": 30,
-  "NT": 0
-};
+  <h1>Leaderboard</h1>
 
-  // 👇 leaderboard logic
-  fetch("data.json")
-    .then(res => res.json())
-    .then(players => {
-      // calculate total points
-      players.forEach(p => {
-        p.points = Object.values(p.tiers).reduce((sum, tier) => sum + tierPoints[tier], 0);
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>IGN</th>
+        <th>Region</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody id="leaderboard"></tbody>
+  </table>
+
+  <script>
+    // 🔢 POINT SYSTEM
+    const tierPoints = {
+      "S": 100,
+      "A": 90,
+      "B": 80,
+      "C": 70,
+      "D": 60,
+      "F": 30,
+      "NT": 0
+    };
+
+    fetch("data.json")
+      .then(res => res.json())
+      .then(players => {
+
+        // Calculate total points for each player
+        players.forEach(p => {
+          p.points = Object.values(p.tiers)
+            .reduce((sum, tier) => sum + tierPoints[tier], 0);
+        });
+
+        // Sort players by points (highest first)
+        players.sort((a, b) => b.points - a.points);
+
+        // Get table body
+        const tbody = document.getElementById("leaderboard");
+
+        // Fill table
+        players.forEach((p, i) => {
+          tbody.innerHTML += `
+            <tr>
+              <td>#${i + 1}</td>
+              <td><a href="player.html?ign=${p.ign}">${p.ign}</a></td>
+              <td>${p.region}</td>
+              <td>${p.points}</td>
+            </tr>
+          `;
+        });
       });
+  </script>
 
-      // sort by points
-      players.sort((a,b) => b.points - a.points);
+</body>
+</html>
 
-      const tbody = document.getElementById("leaderboard");
-
-      // display leaderboard
-      players.forEach((p, i) => {
-        tbody.innerHTML += `
-          <tr>
-            <td>#${i + 1}</td>
-            <td><a href="player.html?ign=${p.ign}">${p.ign}</a></td>
-            <td>${p.region}</td>
-            <td>${p.points}</td>
-          </tr>
-        `;
-      });
-    });
-</script>
