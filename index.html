@@ -1,1 +1,39 @@
 
+<script>
+const tierPoints = {
+  "S": 100,
+  "A": 90,
+  "B": 80,
+  "C": 70,
+  "D": 60,
+  "F": 30,
+  "NT": 0
+};
+
+  // 👇 leaderboard logic
+  fetch("data.json")
+    .then(res => res.json())
+    .then(players => {
+      // calculate total points
+      players.forEach(p => {
+        p.points = Object.values(p.tiers).reduce((sum, tier) => sum + tierPoints[tier], 0);
+      });
+
+      // sort by points
+      players.sort((a,b) => b.points - a.points);
+
+      const tbody = document.getElementById("leaderboard");
+
+      // display leaderboard
+      players.forEach((p, i) => {
+        tbody.innerHTML += `
+          <tr>
+            <td>#${i + 1}</td>
+            <td><a href="player.html?ign=${p.ign}">${p.ign}</a></td>
+            <td>${p.region}</td>
+            <td>${p.points}</td>
+          </tr>
+        `;
+      });
+    });
+</script>
